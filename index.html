@@ -10,446 +10,502 @@
   --green:#3ecf5e;
   --gd:#27b349;
   --gbg:#edfaf1;
-  --gm:#c0eece;
+  --gm:#b8edca;
   --txt:#1a1f1c;
-  --txt2:#4a5250;
+  --txt2:#4f5a54;
   --w:#fff;
-  --b:#e4ede7;
+  --b:#e2ece6;
+  --max:1160px;
+  --px:20px;
 }
-body{direction:rtl;background:var(--w);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;font-size:16px}
+@media(min-width:768px){:root{--px:40px}}
+@media(min-width:1200px){:root{--px:56px}}
 
-/* NAV */
-nav{display:flex;justify-content:space-between;align-items:center;padding:0 56px;height:68px;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
-.logo{font-size:18px;font-weight:900;color:var(--txt);display:flex;align-items:center;gap:8px;letter-spacing:-.5px}
-.logo-leaf{width:12px;height:12px;background:var(--green);border-radius:50% 50% 50% 0;transform:rotate(-45deg);flex-shrink:0}
-.nav-ul{display:flex;gap:32px;list-style:none}
-.nav-ul a{font-size:13px;color:var(--txt2);text-decoration:none;font-weight:500}
-.nav-ul a:hover{color:var(--gd)}
-.nav-cta{background:var(--txt);color:#fff;border:none;padding:11px 26px;font-size:13px;font-weight:700;cursor:pointer;border-radius:50px}
-.nav-cta:hover{background:#2a3530}
+body{direction:rtl;background:var(--w);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
 
-/* HERO — full width layout, cards on LEFT, text on RIGHT */
-.hero{background:var(--gbg);padding:72px 56px 56px;min-height:560px}
-.hero-grid{display:grid;grid-template-columns:340px 1fr;gap:56px;align-items:center;max-width:1200px;margin:0 auto}
+/* ── UTILITIES ── */
+.container{max-width:var(--max);margin:0 auto;padding:0 var(--px)}
+.pill{display:inline-flex;align-items:center;gap:7px;background:rgba(62,207,94,.13);border:1px solid rgba(62,207,94,.35);padding:5px 14px;font-size:11px;color:var(--gd);font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:50px}
+.pill-dot{width:6px;height:6px;background:var(--green);border-radius:50%;flex-shrink:0}
+.btn-green{background:var(--green);color:#fff;border:none;padding:13px 26px;font-size:14px;font-weight:700;cursor:pointer;border-radius:50px;font-family:inherit;transition:background .2s;white-space:nowrap;display:inline-block}
+.btn-green:hover{background:var(--gd)}
+.btn-outline{background:transparent;color:var(--txt);border:2px solid var(--txt);padding:12px 26px;font-size:14px;font-weight:600;cursor:pointer;border-radius:50px;font-family:inherit;transition:all .2s;white-space:nowrap;display:inline-block}
+.btn-outline:hover{background:var(--txt);color:#fff}
+.btn-dark{background:var(--txt);color:#fff;border:none;padding:13px 26px;font-size:14px;font-weight:700;cursor:pointer;border-radius:50px;font-family:inherit;transition:background .2s;white-space:nowrap}
+.btn-dark:hover{background:#2e3d36}
+.sec-label{display:inline-block;background:var(--gbg);color:var(--gd);font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 14px;border-radius:50px;margin-bottom:12px;border:1px solid var(--gm)}
+.sec-title{font-size:clamp(26px,4vw,40px);font-weight:900;letter-spacing:-1px;line-height:1.1;color:var(--txt)}
+.sec-title em{color:var(--gd);font-style:normal}
+.sec-sub{font-size:15px;color:var(--txt2);margin-top:10px;line-height:1.7}
+.sec-head{text-align:center;margin-bottom:48px}
 
-/* CARDS COLUMN */
-.hero-cards{display:flex;flex-direction:column;gap:14px}
-.hc{background:var(--w);border-radius:20px;padding:24px 28px;box-shadow:0 2px 20px rgba(0,0,0,.07);display:flex;flex-direction:column;gap:6px}
-.hc.feat{background:var(--green);box-shadow:0 6px 28px rgba(62,207,94,.35)}
-.hc-top{display:flex;align-items:center;gap:12px}
-.hc-icon{width:44px;height:44px;border-radius:12px;background:var(--gbg);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.hc.feat .hc-icon{background:rgba(255,255,255,.25)}
-.hc-title{font-size:15px;font-weight:800;color:var(--txt);line-height:1.25}
-.hc.feat .hc-title{color:#fff}
-.hc-desc{font-size:13px;color:var(--txt2);line-height:1.6;padding-right:56px}
-.hc.feat .hc-desc{color:rgba(255,255,255,.85)}
+/* ── NAV ── */
+nav{background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:100}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;height:64px;max-width:var(--max);margin:0 auto;padding:0 var(--px)}
+.logo{font-size:17px;font-weight:900;color:var(--txt);display:flex;align-items:center;gap:7px;letter-spacing:-.5px;text-decoration:none}
+.logo-leaf{width:11px;height:11px;background:var(--green);border-radius:50% 50% 50% 0;transform:rotate(-45deg);flex-shrink:0}
+.nav-links{display:none}
+@media(min-width:900px){
+  .nav-links{display:flex;gap:28px;list-style:none}
+  .nav-links a{font-size:13px;color:var(--txt2);text-decoration:none;font-weight:500;transition:color .15s}
+  .nav-links a:hover{color:var(--gd)}
+}
+.nav-cta{background:var(--txt);color:#fff;border:none;padding:9px 20px;font-size:13px;font-weight:700;cursor:pointer;border-radius:50px;font-family:inherit;transition:background .2s}
+.nav-cta:hover{background:#2e3d36}
 
-/* TEXT COLUMN */
-.hero-text{}
-.hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(62,207,94,.12);border:1px solid rgba(62,207,94,.35);padding:6px 16px;font-size:11px;color:var(--gd);font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:50px;margin-bottom:24px}
-.hero-pill-dot{width:6px;height:6px;background:var(--green);border-radius:50%}
-.hero-h1{font-size:clamp(42px,4.5vw,66px);font-weight:900;line-height:1;letter-spacing:-2px;color:var(--txt);margin-bottom:16px}
+/* ── HERO ── */
+.hero{background:var(--gbg);padding:56px 0 0}
+.hero-inner{display:flex;flex-direction:column;gap:40px;max-width:var(--max);margin:0 auto;padding:0 var(--px)}
+@media(min-width:900px){
+  .hero-inner{flex-direction:row;align-items:center;gap:48px;padding-bottom:0}
+}
+.hero-text{flex:1}
+.hero-text .pill{margin-bottom:20px}
+.hero-h1{font-size:clamp(36px,6vw,64px);font-weight:900;line-height:1.0;letter-spacing:-2px;color:var(--txt);margin-bottom:16px}
 .hero-h1 .g{color:var(--gd)}
-.hero-sub{font-size:15px;color:var(--txt2);line-height:1.75;margin-bottom:32px;max-width:480px}
-.hero-sub b{color:var(--txt);font-weight:700}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
-.btn-p{background:var(--green);color:#fff;border:none;padding:14px 28px;font-size:14px;font-weight:700;cursor:pointer;border-radius:50px;white-space:nowrap;transition:background .2s}
-.btn-p:hover{background:var(--gd)}
-.btn-s{background:transparent;color:var(--txt);border:2px solid var(--txt);padding:14px 28px;font-size:14px;font-weight:600;cursor:pointer;border-radius:50px;white-space:nowrap;transition:all .2s}
-.btn-s:hover{background:var(--txt);color:#fff}
-.hstats{display:flex;gap:0;padding-top:32px;border-top:1px solid var(--gm)}
-.hs{padding:0 28px;border-left:1px solid var(--gm)}
+.hero-p{font-size:15px;color:var(--txt2);line-height:1.75;margin-bottom:28px;max-width:480px}
+.hero-p b{color:var(--txt);font-weight:700}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+.hero-stats{display:flex;flex-wrap:wrap;gap:0;padding-top:24px;border-top:1px solid var(--gm)}
+.hs{padding:12px 20px;border-left:1px solid var(--gm)}
 .hs:first-child{padding-right:0;border-left:none}
-.hs-n{font-size:28px;font-weight:900;letter-spacing:-1px;color:var(--txt);line-height:1;margin-bottom:2px}
+.hs-n{font-size:26px;font-weight:900;letter-spacing:-1px;color:var(--txt);line-height:1}
 .hs-n span{color:var(--gd)}
-.hs-l{font-size:11px;color:var(--txt2)}
+.hs-l{font-size:11px;color:var(--txt2);margin-top:1px}
 
-/* TICKER */
-.ticker{background:var(--green);padding:13px 0;overflow:hidden;white-space:nowrap}
-.ticker-t{display:inline-block;animation:tk 26s linear infinite}
-.ticker-t span{font-size:12px;color:#fff;padding:0 26px;letter-spacing:.07em;font-weight:600}
-.ticker-t span::after{content:'·';padding-right:26px;opacity:.5}
-@keyframes tk{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* Hero cards */
+.hero-cards{display:flex;flex-direction:column;gap:12px;width:100%;padding-bottom:0}
+@media(min-width:900px){.hero-cards{width:320px;flex-shrink:0}}
+@media(min-width:1100px){.hero-cards{width:360px}}
+.hc{background:var(--w);border-radius:18px;padding:20px 22px;box-shadow:0 2px 18px rgba(0,0,0,.07);display:flex;align-items:flex-start;gap:14px}
+.hc.feat{background:var(--green);box-shadow:0 6px 24px rgba(62,207,94,.3)}
+.hc-icon{width:44px;height:44px;border-radius:12px;background:var(--gbg);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.hc.feat .hc-icon{background:rgba(255,255,255,.25)}
+.hc-body{}
+.hc-title{font-size:14px;font-weight:800;color:var(--txt);line-height:1.3;margin-bottom:3px}
+.hc.feat .hc-title{color:#fff}
+.hc-desc{font-size:12px;color:var(--txt2);line-height:1.5}
+.hc.feat .hc-desc{color:rgba(255,255,255,.8)}
 
-/* SECTIONS */
-.sec{padding:80px 56px}
-.sec-hd{text-align:center;margin-bottom:52px}
-.slbl{display:inline-block;background:var(--gbg);color:var(--gd);font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:14px;border:1px solid var(--gm)}
-.sh2{font-size:clamp(28px,3vw,40px);font-weight:900;letter-spacing:-1.5px;line-height:1.1;color:var(--txt)}
-.sh2 em{color:var(--gd);font-style:normal}
-.snote{font-size:14px;color:var(--txt2);margin-top:12px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7}
+/* ── TICKER ── */
+.ticker{background:var(--green);padding:11px 0;overflow:hidden;white-space:nowrap;margin-top:48px}
+@media(min-width:900px){.ticker{margin-top:0}}
+.ticker-track{display:inline-flex;animation:scroll 28s linear infinite}
+.ticker-track span{font-size:12px;color:#fff;padding:0 24px;letter-spacing:.06em;font-weight:600}
+.ticker-track span::after{content:'·';padding-right:24px;opacity:.4}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* SERVICES (Scalo 2-col + heading) */
-.svc-bg{background:var(--gbg);padding:80px 56px}
-.svc-grid{display:grid;grid-template-columns:1fr 1fr 320px;gap:24px;max-width:1200px;margin:0 auto;align-items:start}
-.svc-col{display:flex;flex-direction:column;gap:18px}
-.svc-card{background:var(--w);border-radius:20px;padding:28px;box-shadow:0 2px 14px rgba(0,0,0,.05);cursor:pointer;transition:box-shadow .2s,transform .2s}
+/* ── SERVICES ── */
+.services{background:var(--gbg);padding:72px 0}
+.svc-layout{display:flex;flex-direction:column;gap:48px}
+@media(min-width:900px){
+  .svc-layout{flex-direction:row;gap:32px;align-items:flex-start}
+}
+.svc-cards-wrap{display:flex;flex-direction:column;gap:16px;flex:1}
+@media(min-width:600px){
+  .svc-cards-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+}
+.svc-card{background:var(--w);border-radius:20px;padding:26px;box-shadow:0 2px 12px rgba(0,0,0,.05);transition:box-shadow .2s,transform .2s}
 .svc-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
-.svc-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
-.svc-icon{width:48px;height:48px;border-radius:12px;background:var(--gbg);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.svc-title{font-size:16px;font-weight:800;color:var(--txt);line-height:1.2}
-.svc-body{font-size:13px;color:var(--txt2);line-height:1.7;margin-bottom:18px}
-.svc-btn{display:inline-block;background:var(--green);color:#fff;border:none;padding:10px 22px;font-size:13px;font-weight:700;border-radius:50px;cursor:pointer;transition:background .2s}
-.svc-btn:hover{background:var(--gd)}
-.svc-btn.dk{background:var(--txt)}
-.svc-btn.dk:hover{background:#2a3530}
-.svc-right{padding:8px 0 0 16px;display:flex;flex-direction:column;justify-content:center}
-.svc-right-h{font-size:clamp(28px,3vw,44px);font-weight:900;letter-spacing:-2px;line-height:1.05;color:var(--txt);margin-bottom:16px}
-.svc-right-h em{color:var(--gd);font-style:normal}
-.svc-right p{font-size:14px;color:var(--txt2);line-height:1.7;margin-bottom:28px}
-.expl-btn{background:var(--gd);color:#fff;border:none;padding:14px 28px;font-size:14px;font-weight:700;border-radius:50px;cursor:pointer;transition:background .2s}
-.expl-btn:hover{background:var(--green)}
+.svc-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.svc-icon{width:46px;height:46px;border-radius:12px;background:var(--gbg);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.svc-title{font-size:15px;font-weight:800;color:var(--txt);line-height:1.25}
+.svc-body{font-size:13px;color:var(--txt2);line-height:1.65;margin-bottom:16px}
+.svc-cta{font-size:13px;font-weight:700;color:var(--gd);background:none;border:none;cursor:pointer;font-family:inherit;padding:0;transition:gap .15s}
+.svc-cta::after{content:' →'}
+.svc-cta:hover{color:var(--green)}
+.svc-heading{flex-shrink:0}
+@media(min-width:900px){.svc-heading{width:260px}}
+.svc-heading .sec-title{font-size:clamp(28px,3vw,42px);margin-bottom:14px}
+.svc-heading p{font-size:14px;color:var(--txt2);line-height:1.7;margin-bottom:24px}
 
-/* CLIENTS */
-.cl-grid{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--b);border-radius:16px;overflow:hidden}
-.cl{padding:18px 10px;display:flex;align-items:center;justify-content:center;min-height:56px;border-left:1px solid var(--b);border-bottom:1px solid var(--b);transition:background .15s}
-.cl:nth-child(7n){border-left:none}
+/* ── CLIENTS ── */
+.clients{padding:72px 0}
+.cl-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--b);border-radius:16px;overflow:hidden}
+@media(min-width:600px){.cl-grid{grid-template-columns:repeat(5,1fr)}}
+@media(min-width:900px){.cl-grid{grid-template-columns:repeat(7,1fr)}}
+.cl{padding:16px 10px;display:flex;align-items:center;justify-content:center;min-height:52px;border-left:1px solid var(--b);border-bottom:1px solid var(--b);transition:background .15s}
 .cl:hover{background:var(--gbg)}
-.cl img{max-height:20px;max-width:76px;width:auto;filter:grayscale(1) opacity(.3);transition:filter .2s}
-.cl:hover img{filter:grayscale(1) opacity(.6)}
-.cl-txt{font-size:9px;color:#bbb}
+.cl:nth-child(4n){border-left:none}
+@media(min-width:600px){.cl:nth-child(4n){border-left:1px solid var(--b)}.cl:nth-child(5n){border-left:none}}
+@media(min-width:900px){.cl:nth-child(5n){border-left:1px solid var(--b)}.cl:nth-child(7n){border-left:none}}
+.cl img{max-height:18px;max-width:70px;width:auto;filter:grayscale(1) opacity(.28);transition:filter .2s}
+.cl:hover img{filter:grayscale(1) opacity(.55)}
+.cl-name{font-size:9px;color:#ccc;letter-spacing:.04em;display:none}
 
-/* TESTIMONIALS */
-.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.tcard{background:var(--w);border:1px solid var(--b);border-radius:20px;padding:28px;transition:box-shadow .2s,transform .2s;cursor:pointer}
-.tcard:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-3px)}
-.stars{color:var(--green);font-size:13px;letter-spacing:2px;margin-bottom:14px}
-.tcard-txt{font-size:13px;color:var(--txt2);line-height:1.75;margin-bottom:20px}
-.tdiv{height:1px;background:var(--b);margin-bottom:16px}
-.trow{display:flex;align-items:center;gap:12px}
-.tav{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--gm);flex-shrink:0;background:var(--gbg)}
+/* ── TESTIMONIALS ── */
+.testimonials{background:var(--gbg);padding:72px 0}
+.tg{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:600px){.tg{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.tg{grid-template-columns:repeat(3,1fr)}}
+.tcard{background:var(--w);border:1px solid var(--b);border-radius:20px;padding:26px;transition:box-shadow .2s,transform .2s}
+.tcard:hover{box-shadow:0 6px 24px rgba(0,0,0,.07);transform:translateY(-2px)}
+.stars{color:var(--green);font-size:13px;letter-spacing:2px;margin-bottom:12px}
+.tcard-txt{font-size:13px;color:var(--txt2);line-height:1.75;margin-bottom:18px}
+.tdiv{height:1px;background:var(--b);margin-bottom:14px}
+.trow{display:flex;align-items:center;gap:10px}
+.tav{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--gm);flex-shrink:0;background:var(--gbg)}
 .tnm{font-size:13px;font-weight:700;color:var(--txt)}
 .trl{font-size:11px;color:var(--txt2)}
 
-/* PROJECTS */
-.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.pc{background:var(--w);border:1px solid var(--b);border-radius:16px;padding:24px;cursor:pointer;transition:all .2s}
-.pc:hover{box-shadow:0 6px 24px rgba(0,0,0,.08);border-color:var(--gm);transform:translateY(-2px)}
-.pc-tag{display:inline-block;font-size:9px;letter-spacing:.1em;font-weight:700;color:var(--gd);background:var(--gbg);padding:3px 10px;border-radius:50px;margin-bottom:12px}
-.pc-nm{font-size:15px;font-weight:800;color:var(--txt);margin-bottom:4px}
+/* ── PROJECTS ── */
+.projects{padding:72px 0}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(min-width:600px){.pg{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.pg{grid-template-columns:repeat(4,1fr)}}
+.pc{background:var(--w);border:1px solid var(--b);border-radius:16px;padding:20px;transition:all .2s;cursor:pointer}
+.pc:hover{box-shadow:0 5px 20px rgba(0,0,0,.08);border-color:var(--gm);transform:translateY(-2px)}
+.pc-tag{display:inline-block;font-size:9px;letter-spacing:.1em;font-weight:700;color:var(--gd);background:var(--gbg);padding:3px 9px;border-radius:50px;margin-bottom:10px}
+.pc-nm{font-size:14px;font-weight:800;color:var(--txt);margin-bottom:3px}
 .pc-sc{font-size:12px;color:var(--txt2)}
 
-/* COMMANDO */
-.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.cc{background:var(--w);border:1px solid var(--b);border-radius:20px;padding:28px;cursor:pointer;transition:all .2s}
-.cc:hover{box-shadow:0 6px 24px rgba(0,0,0,.08);border-color:var(--gm);transform:translateY(-2px)}
-.cc-icon{width:48px;height:48px;border-radius:14px;background:var(--gbg);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
-.cc-badge{display:inline-block;font-size:9px;letter-spacing:.1em;font-weight:700;padding:3px 10px;border-radius:50px;margin-bottom:10px}
+/* ── COMMANDO ── */
+.commando{background:var(--gbg);padding:72px 0}
+.cg{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.cg{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.cg{grid-template-columns:repeat(3,1fr)}}
+.cc{background:var(--w);border:1px solid var(--b);border-radius:18px;padding:24px;transition:all .2s}
+.cc:hover{box-shadow:0 5px 20px rgba(0,0,0,.07);border-color:var(--gm);transform:translateY(-2px)}
+.cc-icon{width:44px;height:44px;border-radius:12px;background:var(--gbg);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px}
+.cc-badge{display:inline-block;font-size:9px;letter-spacing:.1em;font-weight:700;padding:3px 9px;border-radius:50px;margin-bottom:9px}
 .cc-badge.g{background:var(--gbg);color:var(--gd);border:1px solid var(--gm)}
-.cc-badge.d{background:#f0f2f0;color:#666}
-.cc-t{font-size:15px;font-weight:800;color:var(--txt);margin-bottom:8px}
-.cc-d{font-size:13px;color:var(--txt2);line-height:1.65}
+.cc-badge.d{background:#efefef;color:#666}
+.cc-t{font-size:14px;font-weight:800;color:var(--txt);margin-bottom:7px}
+.cc-d{font-size:13px;color:var(--txt2);line-height:1.6}
 
-/* CTO */
-.cto-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.cto-l{background:var(--gbg);border-radius:24px;padding:44px;border:1px solid var(--gm)}
-.cto-body{font-size:14px;color:var(--txt2);line-height:1.8;margin-bottom:28px}
+/* ── CTO ── */
+.cto-sec{padding:72px 0}
+.cto-layout{display:flex;flex-direction:column;gap:20px}
+@media(min-width:900px){.cto-layout{flex-direction:row;gap:24px}}
+.cto-l{background:var(--gbg);border-radius:22px;padding:36px;border:1px solid var(--gm);flex:1}
+.cto-body{font-size:14px;color:var(--txt2);line-height:1.8;margin-bottom:24px}
 .cto-feats{list-style:none}
-.cto-feats li{font-size:13px;color:var(--txt2);padding:11px 0;border-bottom:1px solid var(--gm);display:flex;gap:10px;line-height:1.5}
+.cto-feats li{font-size:13px;color:var(--txt2);padding:11px 0;border-bottom:1px solid var(--gm);display:flex;gap:10px;line-height:1.5;align-items:flex-start}
 .cto-feats li:last-child{border-bottom:none}
-.cto-feats li::before{content:'→';color:var(--gd);flex-shrink:0;font-weight:700}
-.cto-r{background:var(--txt);border-radius:24px;padding:44px}
-.fl-lbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:24px}
+.cto-feats li::before{content:'→';color:var(--gd);flex-shrink:0;font-weight:700;margin-top:1px}
+.cto-r{background:var(--txt);border-radius:22px;padding:36px;flex:1}
+.fl-lbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:22px}
 .fl{position:relative;padding-right:20px}
-.fl::before{content:'';position:absolute;top:7px;bottom:7px;right:3px;width:1px;background:rgba(255,255,255,.1)}
-.fl-step{display:flex;gap:18px;padding:10px 0}
-.fl-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:3px;position:relative;z-index:1}
-.fl-t{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px}
-.fl-d{font-size:11px;color:rgba(255,255,255,.45);line-height:1.5}
+.fl::before{content:'';position:absolute;top:8px;bottom:8px;right:3px;width:1px;background:rgba(255,255,255,.1)}
+.fl-step{display:flex;gap:16px;padding:9px 0;align-items:flex-start}
+.fl-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:4px;position:relative;z-index:1}
+.fl-t{font-size:13px;font-weight:700;color:#fff;margin-bottom:1px}
+.fl-d{font-size:12px;color:rgba(255,255,255,.45);line-height:1.5}
 
-/* ABOUT */
-.about-layout{display:grid;grid-template-columns:260px 1fr;gap:24px}
-.about-l{background:var(--gbg);border-radius:24px;padding:36px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;border:1px solid var(--gm)}
-.about-img{width:88px;height:88px;border-radius:50%;object-fit:cover;border:3px solid var(--green)}
-.about-nm{font-size:18px;font-weight:900;letter-spacing:-.4px;color:var(--txt)}
-.about-badge{font-size:10px;letter-spacing:.1em;font-weight:700;color:var(--gd);background:rgba(62,207,94,.12);padding:4px 14px;border-radius:50px;border:1px solid var(--gm)}
-.about-r{background:var(--w);border-radius:24px;padding:36px;border:1px solid var(--b)}
-.about-bio{font-size:14px;color:var(--txt2);line-height:1.8;margin-bottom:20px}
+/* ── ABOUT ── */
+.about-sec{background:var(--gbg);padding:72px 0}
+.about-layout{display:flex;flex-direction:column;gap:20px}
+@media(min-width:768px){.about-layout{flex-direction:row;gap:24px;align-items:center}}
+.about-l{background:var(--w);border-radius:22px;padding:32px;display:flex;flex-direction:row;align-items:center;gap:20px;border:1px solid var(--b)}
+@media(min-width:768px){.about-l{flex-direction:column;text-align:center;width:240px;flex-shrink:0;padding:36px}}
+.about-img{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--green);flex-shrink:0}
+@media(min-width:768px){.about-img{width:90px;height:90px}}
+.about-info{}
+.about-nm{font-size:17px;font-weight:900;letter-spacing:-.3px;color:var(--txt)}
+.about-badge{display:inline-block;font-size:10px;letter-spacing:.08em;font-weight:700;color:var(--gd);background:rgba(62,207,94,.1);padding:3px 12px;border-radius:50px;border:1px solid var(--gm);margin-top:4px}
+.about-r{background:var(--w);border-radius:22px;padding:32px;border:1px solid var(--b);flex:1}
+.about-bio{font-size:14px;color:var(--txt2);line-height:1.8;margin-bottom:18px}
 .atags{display:flex;flex-wrap:wrap;gap:8px}
-.atag{background:var(--gbg);border:1px solid var(--gm);padding:5px 14px;font-size:11px;color:var(--gd);border-radius:50px;font-weight:600}
+.atag{background:var(--gbg);border:1px solid var(--gm);padding:4px 12px;font-size:11px;color:var(--gd);border-radius:50px;font-weight:600}
 
-/* FOOTER */
-footer{background:var(--txt);color:#fff}
-.ft-cta{padding:72px 56px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;gap:36px}
-.ft-h{font-size:clamp(26px,3.5vw,46px);font-weight:900;letter-spacing:-2px;line-height:1.1}
+/* ── FOOTER ── */
+footer{background:#1a1f1c;color:#fff}
+.ft-cta{padding:64px var(--px);border-bottom:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;gap:24px}
+@media(min-width:768px){.ft-cta{flex-direction:row;justify-content:space-between;align-items:center;gap:36px;max-width:var(--max);margin:0 auto}}
+.ft-h{font-size:clamp(24px,4vw,42px);font-weight:900;letter-spacing:-1.5px;line-height:1.1}
 .ft-h em{color:var(--green);font-style:normal}
-.ft-btns{display:flex;gap:12px;flex-shrink:0}
-.btn-fw{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.25);padding:14px 28px;font-size:14px;font-weight:600;cursor:pointer;border-radius:50px;transition:border-color .2s}
-.btn-fw:hover{border-color:rgba(255,255,255,.6)}
-.ft-bot{display:flex;justify-content:space-between;align-items:center;padding:20px 56px}
-.ft-copy{font-size:11px;color:rgba(255,255,255,.3)}
-.ft-links{display:flex;gap:20px}
-.ft-links a{font-size:12px;color:rgba(255,255,255,.45);text-decoration:none}
+.ft-btns{display:flex;gap:12px;flex-wrap:wrap;flex-shrink:0}
+.btn-fw{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.2);padding:12px 24px;font-size:14px;font-weight:600;cursor:pointer;border-radius:50px;font-family:inherit;transition:border-color .2s}
+.btn-fw:hover{border-color:rgba(255,255,255,.5)}
+.ft-bot{display:flex;flex-direction:column;gap:8px;padding:20px var(--px);text-align:center}
+@media(min-width:768px){.ft-bot{flex-direction:row;justify-content:space-between;align-items:center;text-align:right;max-width:var(--max);margin:0 auto}}
+.ft-copy{font-size:11px;color:rgba(255,255,255,.28)}
+.ft-links{display:flex;gap:20px;justify-content:center}
+@media(min-width:768px){.ft-links{justify-content:flex-start}}
+.ft-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .15s}
 .ft-links a:hover{color:#fff}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="logo">MASTERBIT <div class="logo-leaf"></div></div>
-  <ul class="nav-ul">
-    <li><a href="#commando">מתכנתים לצוות</a></li>
-    <li><a href="#cto">CTO חיצוני</a></li>
-    <li><a href="#projects">פרויקטים</a></li>
-    <li><a href="#about">עלינו</a></li>
-  </ul>
-  <button class="nav-cta">דברו איתנו</button>
+  <div class="nav-inner">
+    <a href="#" class="logo">MASTERBIT <div class="logo-leaf"></div></a>
+    <ul class="nav-links">
+      <li><a href="#commando">מתכנתים לצוות</a></li>
+      <li><a href="#cto">CTO חיצוני</a></li>
+      <li><a href="#projects">פרויקטים</a></li>
+      <li><a href="#about">עלינו</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">דברו איתנו</button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-grid">
-    <!-- LEFT: cards -->
-    <div class="hero-cards">
-      <div class="hc feat">
-        <div class="hc-top">
-          <div class="hc-icon">⚡</div>
-          <div class="hc-title">מתכנתי קומנדו לצוות שלך</div>
-        </div>
-        <div class="hc-desc">מתכנתים מובחרים לפי שעות או ריטיינר. נכנסים לצוות שלך ומספקים.</div>
+  <div class="hero-inner">
+    <!-- Text first on mobile, cards second -->
+    <div class="hero-text">
+      <div class="pill" style="margin-bottom:20px"><div class="pill-dot"></div>מיסטרביט בע״מ — 20 שנות ניסיון</div>
+      <h1 class="hero-h1">מתכנתי <span class="g">קומנדו</span><br>לפרויקט שלך.</h1>
+      <p class="hero-p">השותף הטכנולוגי שלך ל<b>כוח אדם טכנולוגי</b> ול<b>פרויקטי תוכנה</b>. מתכנתים מובחרים שנכנסים לצוות שלך ומספקים — או CTO חיצוני שיבנה לך מוצר מהרעיון ועד ההשקה.</p>
+      <div class="hero-btns">
+        <button class="btn-green" onclick="document.getElementById('commando').scrollIntoView({behavior:'smooth'})">אני צריך מתכנתים ←</button>
+        <button class="btn-outline" onclick="document.getElementById('cto').scrollIntoView({behavior:'smooth'})">אני יזם — שותף טכנולוגי</button>
       </div>
-      <div class="hc">
-        <div class="hc-top">
-          <div class="hc-icon">🎯</div>
-          <div class="hc-title">CTO חיצוני — שותף טכנולוגי</div>
-        </div>
-        <div class="hc-desc">כל הזרוע הטכנולוגית שלך. מ-MVP ועד מוצר עובד בשוק.</div>
-      </div>
-      <div class="hc">
-        <div class="hc-top">
-          <div class="hc-icon">🎓</div>
-          <div class="hc-title">מתלמדים ← מתכנתים שלך</div>
-        </div>
-        <div class="hc-desc">מתלמדים ללא שכר שהופכים למתכנתים מוכנים לעבודה.</div>
+      <div class="hero-stats">
+        <div class="hs"><div class="hs-n">269<span>+</span></div><div class="hs-l">לקוחות מרוצים</div></div>
+        <div class="hs"><div class="hs-n">200<span>+</span></div><div class="hs-l">חברות</div></div>
+        <div class="hs"><div class="hs-n">20<span>+</span></div><div class="hs-l">שנות ניסיון</div></div>
       </div>
     </div>
-    <!-- RIGHT: text -->
-    <div class="hero-text">
-      <div class="hero-pill"><div class="hero-pill-dot"></div>מיסטרביט בע״מ — 20 שנות ניסיון</div>
-      <h1 class="hero-h1">מתכנתי <span class="g">קומנדו</span><br>לפרויקט שלך.</h1>
-      <p class="hero-sub">השותף הטכנולוגי שלך ל<b>כוח אדם טכנולוגי</b> ול<b>פרויקטי תוכנה</b>. מתכנתים מובחרים שמספקים — או CTO חיצוני שיבנה לך מוצר מהרעיון ועד ההשקה.</p>
-      <div class="hero-btns">
-        <button class="btn-p" onclick="document.getElementById('commando').scrollIntoView({behavior:'smooth'})">אני צריך מתכנתים ←</button>
-        <button class="btn-s" onclick="document.getElementById('cto').scrollIntoView({behavior:'smooth'})">אני יזם — שותף טכנולוגי</button>
+    <!-- Cards -->
+    <div class="hero-cards">
+      <div class="hc" style="background:#fff;border:1px solid var(--b);border-right:4px solid var(--green);box-shadow:0 2px 14px rgba(0,0,0,.06)">
+        <div class="hc-icon" style="background:var(--gbg)">⚡</div>
+        <div class="hc-body">
+          <div class="hc-title">מתכנתי קומנדו לצוות שלך</div>
+          <div class="hc-desc">מתכנתים מובחרים לפי שעות או ריטיינר. נכנסים לצוות שלך ומספקים.</div>
+        </div>
       </div>
-      <div class="hstats">
-        <div class="hs"><div class="hs-n">269<span>+</span></div><div class="hs-l">לקוחות מרוצים</div></div>
-        <div class="hs"><div class="hs-n">200<span>+</span></div><div class="hs-l">חברות וסטארטאפים</div></div>
-        <div class="hs"><div class="hs-n">20<span>+</span></div><div class="hs-l">שנות ניסיון</div></div>
-        <div class="hs"><div class="hs-n">0<span>₪</span></div><div class="hs-l">כניסה ביזמות</div></div>
+      <div class="hc" style="background:#fff;border:1px solid var(--b);border-right:4px solid #2d7dd2;box-shadow:0 2px 14px rgba(0,0,0,.06)">
+        <div class="hc-icon" style="background:#eef4fc">🎯</div>
+        <div class="hc-body">
+          <div class="hc-title">CTO חיצוני — שותף טכנולוגי</div>
+          <div class="hc-desc">כל הזרוע הטכנולוגית שלך. מ-MVP ועד מוצר עובד בשוק.</div>
+        </div>
+      </div>
+      <div class="hc" style="background:#fff;border:1px solid var(--b);border-right:4px solid #f4a026;box-shadow:0 2px 14px rgba(0,0,0,.06)">
+        <div class="hc-icon" style="background:#fef6ea">🎓</div>
+        <div class="hc-body">
+          <div class="hc-title">מתלמדים ← מתכנתים שלך</div>
+          <div class="hc-desc">מתלמדים ללא שכר שהופכים למתכנתים מוכנים לעבודה.</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- TICKER -->
 <div class="ticker">
-  <div class="ticker-t">
+  <div class="ticker-track">
     <span>Angular</span><span>React</span><span>Vue</span><span>NodeJS</span><span>ארכיטקטורה</span><span>סקייל</span><span>סקיוריטי</span><span>DevOps</span><span>AI Integration</span><span>Vibe Coding</span><span>הכשרות</span><span>גיוס מתכנתים</span><span>CTO חיצוני</span><span>MVP</span>
     <span>Angular</span><span>React</span><span>Vue</span><span>NodeJS</span><span>ארכיטקטורה</span><span>סקייל</span><span>סקיוריטי</span><span>DevOps</span><span>AI Integration</span><span>Vibe Coding</span><span>הכשרות</span><span>גיוס מתכנתים</span><span>CTO חיצוני</span><span>MVP</span>
   </div>
 </div>
 
 <!-- SERVICES -->
-<div class="svc-bg">
-  <div class="svc-grid">
-    <div class="svc-col">
-      <div class="svc-card">
-        <div class="svc-head"><div class="svc-icon">⚡</div><div class="svc-title">מתכנתי קומנדו לצוות שלך</div></div>
-        <div class="svc-body">מתכנתים מובחרים שנכנסים לצוות שלך לפי שעות, ריטיינר, או פרויקט. ארכיטקטורה, סקייל, AI ו-DevOps — הכל כלול.</div>
-        <button class="svc-btn" onclick="document.getElementById('commando').scrollIntoView({behavior:'smooth'})">קבל פרטים</button>
+<div class="services">
+  <div class="container">
+    <div class="svc-layout">
+      <div class="svc-cards-wrap">
+        <div class="svc-card">
+          <div class="svc-head"><div class="svc-icon">⚡</div><div class="svc-title">מתכנתי קומנדו לצוות שלך</div></div>
+          <div class="svc-body">מתכנתים מובחרים שנכנסים לצוות שלך לפי שעות, ריטיינר, או פרויקט. ארכיטקטורה, סקייל, AI ו-DevOps — הכל כלול.</div>
+          <button class="svc-cta" onclick="document.getElementById('commando').scrollIntoView({behavior:'smooth'})">קבל פרטים</button>
+        </div>
+        <div class="svc-card">
+          <div class="svc-head"><div class="svc-icon">🎯</div><div class="svc-title">CTO חיצוני — בניית MVP</div></div>
+          <div class="svc-body">כל הזרוע הטכנולוגית שלך. אסטרטגיה → מוצר → UX → UI → קוד → השקה. בתשלום, שותפות, או תקציב מינימלי.</div>
+          <button class="svc-cta" onclick="document.getElementById('cto').scrollIntoView({behavior:'smooth'})">קבל פרטים</button>
+        </div>
+        <div class="svc-card">
+          <div class="svc-head"><div class="svc-icon">🔧</div><div class="svc-title">DevOps & Vibe Coding</div></div>
+          <div class="svc-body">נתקעת? ליווי מייקרים, DevOps, תשתיות, ו-CI/CD שמחזיק בסקייל.</div>
+          <button class="svc-cta">קבל פרטים</button>
+        </div>
+        <div class="svc-card">
+          <div class="svc-head"><div class="svc-icon">📚</div><div class="svc-title">הכשרות לארגונים</div></div>
+          <div class="svc-body">הכשרות לצוותי פיתוח, AI, ארכיטקטורה, ומנהלים. ידע שמניב תוצאות.</div>
+          <button class="svc-cta">קבל פרטים</button>
+        </div>
       </div>
-      <div class="svc-card">
-        <div class="svc-head"><div class="svc-icon">🔧</div><div class="svc-title">DevOps & Vibe Coding</div></div>
-        <div class="svc-body">נתקעת? ליווי מייקרים, DevOps, תשתיות, ו-CI/CD שמחזיק בסקייל.</div>
-        <button class="svc-btn">קבל פרטים</button>
+      <div class="svc-heading">
+        <div class="sec-label">השירותים שלנו</div>
+        <h2 class="sec-title" style="font-size:clamp(28px,3vw,40px)">פתרונות<br><em>לכל צוות</em></h2>
+        <p style="font-size:14px;color:var(--txt2);line-height:1.7;margin:14px 0 24px">פתרונות טכנולוגיים מותאמים לכל שלב — מ-MVP ועד סקייל, ממתכנת אחד ועד צוות שלם.</p>
+        <button class="btn-dark" onclick="document.getElementById('commando').scrollIntoView({behavior:'smooth'})">כל השירותים ←</button>
       </div>
-    </div>
-    <div class="svc-col">
-      <div class="svc-card">
-        <div class="svc-head"><div class="svc-icon">🎯</div><div class="svc-title">CTO חיצוני — בניית MVP</div></div>
-        <div class="svc-body">כל הזרוע הטכנולוגית שלך. אסטרטגיה → מוצר → UX → UI → קוד → השקה. בתשלום, שותפות, או תקציב מינימלי.</div>
-        <button class="svc-btn dk" onclick="document.getElementById('cto').scrollIntoView({behavior:'smooth'})">קבל פרטים</button>
-      </div>
-      <div class="svc-card">
-        <div class="svc-head"><div class="svc-icon">📚</div><div class="svc-title">הכשרות לארגונים</div></div>
-        <div class="svc-body">הכשרות לצוותי פיתוח, AI, ארכיטקטורה, ומנהלים. ידע שמניב תוצאות.</div>
-        <button class="svc-btn">קבל פרטים</button>
-      </div>
-    </div>
-    <div class="svc-right">
-      <h2 class="svc-right-h">השירותים<br><em>שלנו</em></h2>
-      <p>פתרונות טכנולוגיים מותאמים לכל שלב — מ-MVP ועד סקייל, ממתכנת אחד ועד צוות שלם.</p>
-      <button class="expl-btn">כל השירותים</button>
     </div>
   </div>
 </div>
 
 <!-- CLIENTS -->
-<div class="sec">
-  <div class="sec-hd">
-    <div class="slbl">לקוחות נבחרים</div>
-    <h2 class="sh2">עובדים עם ה<em>מובילים</em></h2>
-    <p class="snote">מאות חברות הייטק וסטארטאפים בחרו במיסטרביט.</p>
-  </div>
-  <div class="cl-grid">
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/aquasec.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Aquasec</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/etoro.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">eToro</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/honeybook.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">HoneyBook</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/nvidia_logo.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">NVIDIA</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/outbrain.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Outbrain</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/cyberark.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">CyberArk</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/Moon-active.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Moon Active</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/hilan.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Hilan</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/natural_intelligence.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Nat. Intel</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/Taptica-logo.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Taptica</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/vcita.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">vCita</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/netapp.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">NetApp</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/kryon.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Kryon</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/amdocs.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Amdocs</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/hp.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">HP</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/intel.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Intel</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/poalim.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Bank Hapoalim</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/kaltura_logo.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Kaltura</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/ebay-logo.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">eBay</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/haaretz.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Haaretz</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/audioCodes_logo.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">AudioCodes</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/radwin.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Radwin</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/sapiens-logo.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Sapiens</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/startapp-logo.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">StartApp</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/nice-actimize-logo.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">NICE</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/cellwize.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Cellwize</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/vatbox.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">VATBox</span></div>
-    <div class="cl"><img src="https://www.misterbit.co.il/img/clients/intelligo.png" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span class="cl-txt" style="display:none">Intelligo</span></div>
+<div class="clients">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-label">לקוחות נבחרים</div>
+      <h2 class="sec-title">עובדים עם ה<em>מובילים</em></h2>
+      <p class="sec-sub">מאות חברות הייטק וסטארטאפים בחרו במיסטרביט.</p>
+    </div>
+    <div class="cl-grid">
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/aquasec.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/etoro.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/honeybook.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/nvidia_logo.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/outbrain.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/cyberark.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/Moon-active.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/hilan.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/natural_intelligence.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/Taptica-logo.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/vcita.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/netapp.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/kryon.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/amdocs.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/hp.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/intel.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/poalim.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/kaltura_logo.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/ebay-logo.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/haaretz.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/audioCodes_logo.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/radwin.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/sapiens-logo.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/startapp-logo.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/nice-actimize-logo.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/cellwize.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/vatbox.png" onerror="this.style.display='none'"></div>
+      <div class="cl"><img src="https://www.misterbit.co.il/img/clients/intelligo.png" onerror="this.style.display='none'"></div>
+    </div>
   </div>
 </div>
 
 <!-- TESTIMONIALS -->
-<div class="sec" style="background:var(--gbg)">
-  <div class="sec-hd">
-    <div class="slbl">ממליצים</div>
-    <h2 class="sh2">מה <em>הלקוחות</em> אומרים</h2>
-    <p class="snote">VP R&D, CTO ומייסדים מחברות המובילות בישראל ובעולם.</p>
-  </div>
-  <div class="tg">
-    <div class="tcard"><div class="stars">★★★★★</div><div class="tcard-txt">נדהמתי מהמסירות של מיסטרביט. האמפתיה, הלהיטות וגם היכולות הטכנולוגיות — מיסטרביט הביאו את המקצועיות המדהימה ביותר שראיתי.</div><div class="tdiv"></div><div class="trow"><img src="https://www.misterbit.co.il/img/clients/fred2.jpg" class="tav"><div><div class="tnm">פרדריק אקנין</div><div class="trl">Sparkeo · Founder</div></div></div></div>
-    <div class="tcard"><div class="stars">★★★★★</div><div class="tcard-txt">בשנתיים האחרונות העסקתי מספר מתכנתים של מיסטרביט — כולם היו מצויינים. השתלבו במהירות וסיפקו תוצאות מפתיעות.</div><div class="tdiv"></div><div class="trow"><img src="https://www.misterbit.co.il/img/clients/moshayov.jpeg" class="tav"><div><div class="tnm">טל מושיוב</div><div class="trl">Taptica · CTO</div></div></div></div>
-    <div class="tcard"><div class="stars">★★★★★</div><div class="tcard-txt">הפיתוח היה מהיר, איכותי ומשתלם. עמדו בלוח הזמנים, היו בתקשורת שוטפת. הרגשתי שהמוצר שלי בראש סדר העדיפויות.</div><div class="tdiv"></div><div class="trow"><img src="https://www.misterbit.co.il/img/clients/ronsho.jpg" class="tav"><div><div class="tnm">רון שושני</div><div class="trl">VP R&D</div></div></div></div>
-    <div class="tcard"><div class="stars">★★★★★</div><div class="tcard-txt">העסקתי מפתחים ממיסטרביט והייתי מרוצה. את חלקם אף קלטתי לתוך הארגון. אשמח להמשיך ולגייס מהם.</div><div class="tdiv"></div><div class="trow"><img src="https://www.misterbit.co.il/img/clients/arbel.jpeg" class="tav"><div><div class="tnm">אבנר ארבל</div><div class="trl">Radwin · Software Group Manager</div></div></div></div>
-    <div class="tcard"><div class="stars">★★★★★</div><div class="tcard-txt">מיסטרביט העבירו קורס Angular לצוות הפיתוח — מקצועי וחדשני. המדריך בלט במקצוענות ובהיכולת לאתגר את המשתתפים.</div><div class="tdiv"></div><div class="trow"><img src="https://www.misterbit.co.il/img/clients/raboy.jpg" class="tav"><div><div class="tnm">יובל ראבוי</div><div class="trl">StartApp · VP R&D</div></div></div></div>
-    <div class="tcard"><div class="stars">★★★★★</div><div class="tcard-txt">יכולת לתפוס במהירות רעיונות וליצור מוצרים איכותיים — אפילו ממרחק של 7,500 מייל. מומלץ מאוד.</div><div class="tdiv"></div><div class="trow"><img src="https://www.misterbit.co.il/img/clients/steve.jpg" class="tav"><div><div class="tnm">סטיב צ'אן</div><div class="trl">GoPlanit · Founder</div></div></div></div>
+<div class="testimonials">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-label">ממליצים</div>
+      <h2 class="sec-title">לקוחות <em>ממליצים</em></h2>
+      <p class="sec-sub">VP R&D, CTO ומייסדים מחברות המובילות בישראל ובעולם.</p>
+    </div>
+    <div class="tg">
+      <div class="tcard"><div class="stars">★★★★★</div><p class="tcard-txt">נדהמתי מהמסירות של מיסטרביט. האמפתיה, הלהיטות וגם היכולות הטכנולוגיות — מיסטרביט הביאו את המקצועיות המדהימה ביותר שראיתי.</p><div class="tdiv"></div><div class="trow"><img src="https://www.misterbit.co.il/img/clients/fred2.jpg" class="tav" onerror="this.style.background='var(--gbg)'"><div><div class="tnm">פרדריק אקנין</div><div class="trl">Sparkeo · Founder</div></div></div></div>
+      <div class="tcard"><div class="stars">★★★★★</div><p class="tcard-txt">בשנתיים האחרונות העסקתי מספר מתכנתים של מיסטרביט — כולם היו מצויינים. השתלבו במהירות וסיפקו תוצאות מפתיעות.</p><div class="tdiv"></div><div class="trow"><img src="https://www.misterbit.co.il/img/clients/moshayov.jpeg" class="tav" onerror="this.style.background='var(--gbg)'"><div><div class="tnm">טל מושיוב</div><div class="trl">Taptica · CTO</div></div></div></div>
+      <div class="tcard"><div class="stars">★★★★★</div><p class="tcard-txt">הפיתוח היה מהיר, איכותי ומשתלם. עמדו בלוח הזמנים, היו בתקשורת שוטפת. הרגשתי שהמוצר שלי בראש סדר העדיפויות.</p><div class="tdiv"></div><div class="trow"><img src="https://www.misterbit.co.il/img/clients/ronsho.jpg" class="tav" onerror="this.style.background='var(--gbg)'"><div><div class="tnm">רון שושני</div><div class="trl">VP R&D</div></div></div></div>
+      <div class="tcard"><div class="stars">★★★★★</div><p class="tcard-txt">העסקתי מפתחים ממיסטרביט והייתי מרוצה. את חלקם אף קלטתי לתוך הארגון. אשמח להמשיך ולגייס מהם.</p><div class="tdiv"></div><div class="trow"><img src="https://www.misterbit.co.il/img/clients/arbel.jpeg" class="tav" onerror="this.style.background='var(--gbg)'"><div><div class="tnm">אבנר ארבל</div><div class="trl">Radwin · Software Group Manager</div></div></div></div>
+      <div class="tcard"><div class="stars">★★★★★</div><p class="tcard-txt">מיסטרביט העבירו קורס Angular לצוות הפיתוח — מקצועי וחדשני. המדריך בלט במקצוענות ובהיכולת לאתגר את המשתתפים.</p><div class="tdiv"></div><div class="trow"><img src="https://www.misterbit.co.il/img/clients/raboy.jpg" class="tav" onerror="this.style.background='var(--gbg)'"><div><div class="tnm">יובל ראבוי</div><div class="trl">StartApp · VP R&D</div></div></div></div>
+      <div class="tcard"><div class="stars">★★★★★</div><p class="tcard-txt">יכולת לתפוס במהירות רעיונות וליצור מוצרים איכותיים — אפילו ממרחק של 7,500 מייל. מומלץ מאוד.</p><div class="tdiv"></div><div class="trow"><img src="https://www.misterbit.co.il/img/clients/steve.jpg" class="tav" onerror="this.style.background='var(--gbg)'"><div><div class="tnm">סטיב צ'אן</div><div class="trl">GoPlanit · Founder</div></div></div></div>
+    </div>
   </div>
 </div>
 
 <!-- PROJECTS -->
-<div class="sec" id="projects">
-  <div class="sec-hd">
-    <div class="slbl">פרויקטים נבחרים</div>
-    <h2 class="sh2">מה <em>בנינו</em></h2>
-    <p class="snote">פרויקטים מתחומים שונים — fintech, security, telco, entertainment ועוד.</p>
-  </div>
-  <div class="pg">
-    <div class="pc"><div class="pc-tag">SECURITY</div><div class="pc-nm">Intelligo</div><div class="pc-sc">Risk Management</div></div>
-    <div class="pc"><div class="pc-tag">FINANCE</div><div class="pc-nm">Bank Hapoalim</div><div class="pc-sc">Financial Industry</div></div>
-    <div class="pc"><div class="pc-tag">TELCO</div><div class="pc-nm">Audio Codes</div><div class="pc-sc">Telecommunications</div></div>
-    <div class="pc"><div class="pc-tag">TELCO</div><div class="pc-nm">Cellwize</div><div class="pc-sc">Telecommunications</div></div>
-    <div class="pc"><div class="pc-tag">SECURITY</div><div class="pc-nm">Sitaro</div><div class="pc-sc">Network Security</div></div>
-    <div class="pc"><div class="pc-tag">ENTERTAIN</div><div class="pc-nm">Deep.it</div><div class="pc-sc">Digital Entertainment</div></div>
-    <div class="pc"><div class="pc-tag">VIDEO ADS</div><div class="pc-nm">Framez</div><div class="pc-sc">Video Ads Industry</div></div>
-    <div class="pc"><div class="pc-tag">SAAS</div><div class="pc-nm">Mr Survey</div><div class="pc-sc">Survey Management</div></div>
+<div class="projects" id="projects">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-label">פרויקטים נבחרים</div>
+      <h2 class="sec-title">עבודות <em>נבחרות</em></h2>
+      <p class="sec-sub">fintech, security, telco, entertainment — ועוד עשרות פרויקטים בתחומים שונים.</p>
+    </div>
+    <div class="pg">
+      <div class="pc"><div class="pc-tag">SECURITY</div><div class="pc-nm">Intelligo</div><div class="pc-sc">Risk Management</div></div>
+      <div class="pc"><div class="pc-tag">FINANCE</div><div class="pc-nm">Bank Hapoalim</div><div class="pc-sc">Financial Industry</div></div>
+      <div class="pc"><div class="pc-tag">TELCO</div><div class="pc-nm">Audio Codes</div><div class="pc-sc">Telecommunications</div></div>
+      <div class="pc"><div class="pc-tag">TELCO</div><div class="pc-nm">Cellwize</div><div class="pc-sc">Telecommunications</div></div>
+      <div class="pc"><div class="pc-tag">SECURITY</div><div class="pc-nm">Sitaro</div><div class="pc-sc">Network Security</div></div>
+      <div class="pc"><div class="pc-tag">ENTERTAIN</div><div class="pc-nm">Deep.it</div><div class="pc-sc">Digital Entertainment</div></div>
+      <div class="pc"><div class="pc-tag">VIDEO ADS</div><div class="pc-nm">Framez</div><div class="pc-sc">Video Ads</div></div>
+      <div class="pc"><div class="pc-tag">SAAS</div><div class="pc-nm">Mr Survey</div><div class="pc-sc">Survey Management</div></div>
+    </div>
   </div>
 </div>
 
 <!-- COMMANDO -->
-<div class="sec" id="commando" style="background:var(--gbg)">
-  <div class="sec-hd">
-    <div class="slbl">מתכנתי קומנדו לצוות שלך</div>
-    <h2 class="sh2">מה תקבל <em>מאיתנו</em></h2>
-    <p class="snote">מתכנתים מובחרים שמבינים ארכיטקטורה, עובדים עם AI, ונכנסים לצוות שלך בלי חיכוך.</p>
-  </div>
-  <div class="cg">
-    <div class="cc"><div class="cc-icon">⚡</div><div class="cc-badge g">CORE</div><div class="cc-t">נינג'ות קוד / קומנדו</div><div class="cc-d">מתכנתים מובחרים לפרויקט, לצוות, או לחברה. נכנסים מהר, עובדים חזק, מספקים.</div></div>
-    <div class="cc"><div class="cc-icon">🕐</div><div class="cc-badge d">FLEXIBLE</div><div class="cc-t">שעתי / ריטיינר חודשי</div><div class="cc-d">גמישות מלאה — שעות בודדות, ימים, או ריטיינר חודשי קבוע לצוות שלך.</div></div>
-    <div class="cc"><div class="cc-icon">🏗️</div><div class="cc-t">ארכיטקטורה & Scale</div><div class="cc-d">מיומנים בארכיטקטורות תוכנה, סקייל, סקיוריטי, טכנולוגיות מודרניות, DevOps ו-AI.</div></div>
-    <div class="cc"><div class="cc-icon">🎯</div><div class="cc-t">גיוס קבוע לחברה</div><div class="cc-d">רוצה לגייס לצוות הקבוע? עוזרים למצוא, לסנן, ולהכניס מתכנתים שיישארו.</div></div>
-    <div class="cc"><div class="cc-icon">🎓</div><div class="cc-t">מתלמדים ← מתכנתים</div><div class="cc-d">מתלמדים ללא שכר שמתפתחים אצלנו — הטובים ממשיכים אליך כמתכנתים מוכנים.</div></div>
-    <div class="cc"><div class="cc-icon">🔧</div><div class="cc-t">DevOps & Vibe Coding</div><div class="cc-d">נתקעת? ליווי מייקרים, DevOps, תשתיות, ו-CI/CD שמחזיק בסקייל.</div></div>
+<div class="commando" id="commando">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-label">מתכנתי קומנדו לצוות שלך</div>
+      <h2 class="sec-title">בדיוק <em>מה שצריך</em></h2>
+      <p class="sec-sub">מתכנתים מובחרים שמבינים ארכיטקטורה, עובדים עם AI, ונכנסים בלי חיכוך.</p>
+    </div>
+    <div class="cg">
+      <div class="cc"><div class="cc-icon">⚡</div><div class="cc-badge g">CORE</div><div class="cc-t">נינג'ות קוד / קומנדו</div><div class="cc-d">מתכנתים מובחרים לפרויקט, לצוות, או לחברה. נכנסים מהר, עובדים חזק, מספקים.</div></div>
+      <div class="cc"><div class="cc-icon">🕐</div><div class="cc-badge d">FLEXIBLE</div><div class="cc-t">שעתי / ריטיינר חודשי</div><div class="cc-d">גמישות מלאה — שעות בודדות, ימים, או ריטיינר חודשי קבוע לצוות שלך.</div></div>
+      <div class="cc"><div class="cc-icon">🏗️</div><div class="cc-t">ארכיטקטורה & Scale</div><div class="cc-d">מיומנים בארכיטקטורות תוכנה, סקייל, סקיוריטי, טכנולוגיות מודרניות, DevOps ו-AI.</div></div>
+      <div class="cc"><div class="cc-icon">🎯</div><div class="cc-t">גיוס קבוע לחברה</div><div class="cc-d">רוצה לגייס לצוות הקבוע? עוזרים למצוא, לסנן, ולהכניס מתכנתים שיישארו.</div></div>
+      <div class="cc"><div class="cc-icon">🎓</div><div class="cc-t">מתלמדים ← מתכנתים</div><div class="cc-d">מתלמדים ללא שכר שמתפתחים אצלנו — הטובים ממשיכים אליך כמתכנתים מוכנים.</div></div>
+      <div class="cc"><div class="cc-icon">🔧</div><div class="cc-t">DevOps & Vibe Coding</div><div class="cc-d">נתקעת? ליווי מייקרים, DevOps, תשתיות, ו-CI/CD שמחזיק בסקייל.</div></div>
+    </div>
   </div>
 </div>
 
 <!-- CTO -->
-<div class="sec" id="cto">
-  <div class="sec-hd">
-    <div class="slbl">CTO חיצוני — שותפות מלאה</div>
-    <h2 class="sh2">מרעיון ל<em>מוצר עובד</em></h2>
-    <p class="snote">ליזמים שצריכים מישהו שיקח אחריות על הכל — כולל בתקציב מינימלי.</p>
-  </div>
-  <div class="cto-layout">
-    <div class="cto-l">
-      <p class="cto-body">אנחנו נהיה ה-CTO, הצוות, והאסטרטגיה הטכנולוגית שלך. אתה מתמקד ב-business — אנחנו מטפלים בכל השאר.</p>
-      <ul class="cto-feats">
-        <li>UI/UX ועיצוב מוצר — מ-wireframes עד מוצר עובד</li>
-        <li>בדיקת שוק ו-PRD — לפני שמשקיעים שקל</li>
-        <li>ניהול צוות פיתוח — גיוס, תהליכים, ארכיטקטורה</li>
-        <li>סיוע בגיוס שותפים ומשקיעים טכניים</li>
-        <li>בתשלום, בשותפות, או בתקציב מינימלי</li>
-      </ul>
-      <button class="btn-p" style="margin-top:28px">שותף טכנולוגי ←</button>
+<div class="cto-sec" id="cto">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-label">CTO חיצוני — שותפות מלאה</div>
+      <h2 class="sec-title">מרעיון ל<em>מוצר עובד</em></h2>
+      <p class="sec-sub">ליזמים שצריכים מישהו שיקח אחריות על הכל — כולל בתקציב מינימלי.</p>
     </div>
-    <div class="cto-r">
-      <div class="fl-lbl">פלואו בניית MVP</div>
-      <div class="fl">
-        <div class="fl-step"><div class="fl-dot"></div><div><div class="fl-t">אסטרטגיה</div><div class="fl-d">ולידציה, שוק, PMF, תחרות</div></div></div>
-        <div class="fl-step"><div class="fl-dot"></div><div><div class="fl-t">מוצר</div><div class="fl-d">PRD, פיצ'רים, עדיפויות</div></div></div>
-        <div class="fl-step"><div class="fl-dot"></div><div><div class="fl-t">UX</div><div class="fl-d">פלואו, ארכיטקטורת מידע, wireframes</div></div></div>
-        <div class="fl-step"><div class="fl-dot"></div><div><div class="fl-t">UI</div><div class="fl-d">עיצוב, brand, design system</div></div></div>
-        <div class="fl-step"><div class="fl-dot"></div><div><div class="fl-t">תכנות</div><div class="fl-d">פיתוח, code review, בדיקות</div></div></div>
-        <div class="fl-step"><div class="fl-dot"></div><div><div class="fl-t">השקה</div><div class="fl-d">DevOps, monitoring, go-to-market</div></div></div>
+    <div class="cto-layout">
+      <div class="cto-l">
+        <p class="cto-body">אנחנו נהיה ה-CTO, הצוות, והאסטרטגיה הטכנולוגית שלך. אתה מתמקד ב-business — אנחנו מטפלים בכל השאר.</p>
+        <ul class="cto-feats">
+          <li>UI/UX ועיצוב מוצר — מ-wireframes עד מוצר עובד</li>
+          <li>בדיקת שוק ו-PRD — לפני שמשקיעים שקל</li>
+          <li>ניהול צוות פיתוח — גיוס, תהליכים, ארכיטקטורה</li>
+          <li>סיוע בגיוס שותפים ומשקיעים טכניים</li>
+          <li>בתשלום, בשותפות, או בתקציב מינימלי</li>
+        </ul>
+        <button class="btn-green" style="margin-top:28px" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">שותף טכנולוגי ←</button>
+      </div>
+      <div class="cto-r">
+        <div class="fl-lbl">פלואו בניית MVP</div>
+        <div class="fl">
+          <div class="fl-step"><div class="fl-dot"></div><div><div class="fl-t">אסטרטגיה</div><div class="fl-d">ולידציה, שוק, PMF, תחרות</div></div></div>
+          <div class="fl-step"><div class="fl-dot"></div><div><div class="fl-t">מוצר</div><div class="fl-d">PRD, פיצ'רים, עדיפויות</div></div></div>
+          <div class="fl-step"><div class="fl-dot"></div><div><div class="fl-t">UX</div><div class="fl-d">פלואו, ארכיטקטורת מידע, wireframes</div></div></div>
+          <div class="fl-step"><div class="fl-dot"></div><div><div class="fl-t">UI</div><div class="fl-d">עיצוב, brand, design system</div></div></div>
+          <div class="fl-step"><div class="fl-dot"></div><div><div class="fl-t">תכנות</div><div class="fl-d">פיתוח, code review, בדיקות</div></div></div>
+          <div class="fl-step"><div class="fl-dot"></div><div><div class="fl-t">השקה</div><div class="fl-d">DevOps, monitoring, go-to-market</div></div></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ABOUT -->
-<div class="sec" id="about" style="background:var(--gbg)">
-  <div class="sec-hd">
-    <div class="slbl">על מיסטרביט</div>
-    <h2 class="sh2">מי <em>אנחנו</em></h2>
-  </div>
-  <div class="about-layout">
-    <div class="about-l">
-      <img src="https://www.misterbit.co.il/img/yaron.jpg" class="about-img" alt="ירון ביטון" onerror="this.style.display='none'">
-      <div class="about-nm">ירון ביטון</div>
-      <div class="about-badge">FOUNDER & CTO</div>
+<div class="about-sec" id="about">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-label">על מיסטרביט</div>
+      <h2 class="sec-title">הצוות <em>שלנו</em></h2>
     </div>
-    <div class="about-r">
-      <p class="about-bio">מוביל קורס ממרמ לשעבר, CTO מונוסב, ומוביל טכנולוגי מזה 20 שנה. מייסד מיסטרביט וקודינג-אקדמי — בוטקאמפ לפיתוח תוכנה. ניסיון של שנים בבניית מוצרים, ניהול צוותים, וליווי מאות חברות וסטארטאפים.</p>
-      <div class="atags">
-        <div class="atag">269 לקוחות מרוצים</div>
-        <div class="atag">מוביל קורס ממרמ לשעבר</div>
-        <div class="atag">CTO מונוסב</div>
-        <div class="atag">20 שנות ניסיון</div>
-        <div class="atag">Angular · React · Vue · NodeJS</div>
+    <div class="about-layout">
+      <div class="about-l">
+        <img src="https://www.misterbit.co.il/img/yaron.jpg" class="about-img" alt="ירון ביטון" onerror="this.style.display='none'">
+        <div class="about-info">
+          <div class="about-nm">ירון ביטון</div>
+          <div class="about-badge">FOUNDER & CTO</div>
+        </div>
+      </div>
+      <div class="about-r">
+        <p class="about-bio">מוביל קורס ממרמ לשעבר, CTO מונוסב, ומוביל טכנולוגי מזה 20 שנה. מייסד מיסטרביט וקודינג-אקדמי — בוטקאמפ לפיתוח תוכנה. ניסיון של שנים בבניית מוצרים, ניהול צוותים, וליווי מאות חברות וסטארטאפים מ-early stage ועד סקייל.</p>
+        <div class="atags">
+          <div class="atag">269 לקוחות מרוצים</div>
+          <div class="atag">מוביל קורס ממרמ לשעבר</div>
+          <div class="atag">CTO מונוסב</div>
+          <div class="atag">20 שנות ניסיון</div>
+          <div class="atag">Angular · React · Vue · NodeJS</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<footer>
+<!-- FOOTER -->
+<footer id="contact">
   <div class="ft-cta">
     <h2 class="ft-h">מוכן להתחיל?<br><em>דבר איתנו.</em></h2>
     <div class="ft-btns">
-      <button class="btn-p">אני צריך מתכנתים ←</button>
+      <button class="btn-green">אני צריך מתכנתים ←</button>
       <button class="btn-fw">שותף טכנולוגי</button>
     </div>
   </div>
   <div class="ft-bot">
-    <div class="ft-copy">© 2025 מיסטרביט בע״מ · הבונים 4 רמת גן · כל הזכויות שמורות</div>
+    <div class="ft-copy">© 2025 מיסטרביט בע״מ · הבונים 4 רמת גן</div>
     <div class="ft-links">
       <a href="tel:079-5508050">079-5508050</a>
-      <a href="mailto:info@misterbit.co.il">info@misterbit.co.il</a>
-    </div>
-  </div>
-</footer>
-
-</body>
-</html>
+      <a href="/cdn-cgi/l/email-protection#751c1b131a35181c06011007171c015b161a5b1c19"><span class="__cf_email__" da
